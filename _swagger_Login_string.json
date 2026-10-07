@@ -1,0 +1,240 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : null,
+    "version" : "1.0.0",
+    "title" : null,
+    "termsOfService" : null,
+    "contact" : null,
+    "license" : null
+  },
+  "host" : "dm-us.informaticacloud.com",
+  "basePath" : "/identity-service",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/api/v1/Login" : {
+      "post" : {
+        "tags" : [ "_swagger_Login" ],
+        "summary" : null,
+        "description" : null,
+        "operationId" : "_swagger_Login",
+        "produces" : [ "*/*" ],
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : null,
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/_swagger_Login_Request##body"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+		 "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "_swagger_Login##groups" : {
+      "properties" : {
+        "B2B_role_group" : {
+          "type" : "string"
+        },
+        "APAC_CDGC_Admins" : {
+          "type" : "string"
+        }
+      }
+    },
+    "_swagger_Login##effectiveRoles" : {
+      "properties" : {
+        "Operator" : {
+          "type" : "string"
+        },
+        "B2B_role_Monitor" : {
+          "type" : "string"
+        },
+        "Reference 360 Stake Holder" : {
+          "type" : "string"
+        },
+        "Customer 360 Manager" : {
+          "type" : "string"
+        },
+        "Product 360 Manager" : {
+          "type" : "string"
+        },
+        "Data Integration Task Executor" : {
+          "type" : "string"
+        },
+        "Business360ProcessExecutor" : {
+          "type" : "string"
+        },
+        "Designer" : {
+          "type" : "string"
+        },
+        "VSAT_INFACLOUD_B2B_CUSTOMER" : {
+          "type" : "string"
+        },
+        "Monitor" : {
+          "type" : "string"
+        },
+        "Reference 360 Primary Owner" : {
+          "type" : "string"
+        },
+        "Reference 360 Business Steward" : {
+          "type" : "string"
+        },
+        "MDM Business User" : {
+          "type" : "string"
+        },
+        "B2B_role_customer" : {
+          "type" : "string"
+        },
+        "B2B_test_customer" : {
+          "type" : "string"
+        },
+        "Service Consumer" : {
+          "type" : "string"
+        },
+        "Reference 360 Business Analyst" : {
+          "type" : "string"
+        },
+        "Deployer" : {
+          "type" : "string"
+        },
+        "Customer 360 Data Steward" : {
+          "type" : "string"
+        },
+        "VSAT_INFACLOUD_B2B_SUPPLIER" : {
+          "type" : "string"
+        },
+        "Reference 360 User" : {
+          "type" : "string"
+        },
+        "CIH" : {
+          "type" : "string"
+        },
+        "Reference 360 Administrator" : {
+          "type" : "string"
+        },
+        "Governance Administrator" : {
+          "type" : "string"
+        },
+        "Data Preview" : {
+          "type" : "string"
+        },
+        "Product 360 Read Only" : {
+          "type" : "string"
+        },
+        "Admin" : {
+          "type" : "string"
+        },
+        "VSAT_INFACLOUD_B2B_MONITOR" : {
+          "type" : "string"
+        },
+        "Data Viewer" : {
+          "type" : "string"
+        },
+        "Reference 360 Planner" : {
+          "type" : "string"
+        },
+        "MDM Designer" : {
+          "type" : "string"
+        },
+        "Business Manager" : {
+          "type" : "string"
+        },
+        "Customer 360 Analyst" : {
+          "type" : "string"
+        },
+        "B2B_role_Supplier" : {
+          "type" : "string"
+        }
+      }
+    },
+    "_swagger_Login" : {
+      "properties" : {
+        "sessionId" : {
+          "type" : "string"
+        },
+        "sessionCorrelationId" : {
+          "type" : "string"
+        },
+        "sessionExpireTime" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "currentOrgId" : {
+          "type" : "string"
+        },
+        "currentOrgName" : {
+          "type" : "string"
+        },
+        "parentOrgId" : {
+          "type" : "string"
+        },
+        "orgId" : {
+          "type" : "string"
+        },
+        "orgName" : {
+          "type" : "string"
+        },
+        "groups" : {
+          "$ref" : "#/definitions/_swagger_Login##groups"
+        },
+        "effectiveRoles" : {
+          "$ref" : "#/definitions/_swagger_Login##effectiveRoles"
+        },
+        "effectivePrivileges" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "status" : {
+          "type" : "string"
+        },
+        "timeZoneId" : {
+          "type" : "string"
+        },
+        "authenticator" : {
+          "type" : "number",
+          "format" : "int32"
+        },
+        "deploymentGroupId" : {
+          "type" : "string"
+        },
+        "resolveRemoteOrg" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "_swagger_Login_Request##body" : {
+      "properties" : {
+        "username" : {
+          "type" : "string"
+        },
+        "password" : {
+          "type" : "string"
+        }
+      }
+    },
+    "_swagger_Login_Request" : {
+      "properties" : {
+        "body" : {
+          "$ref" : "#/definitions/_swagger_Login_Request##body"
+        }
+      }
+    }
+  }
+}
