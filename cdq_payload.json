@@ -1,0 +1,153 @@
+{
+  "swagger": "2.0",
+  "honourNullinJsonArray": "true",
+  "x-honourNullinJsonArray": true,
+  "info": {
+    "title": "Collibra DQ API",
+    "version": "1.0.0"
+  },
+  "host": "asvprerelwin01.informatica.com:8082",
+  "basePath": "/collibradq",
+  "schemes": ["http"],
+  "security": [{ "bearer_auth": [] }],
+  "paths": {
+    "/auth/signin": {
+      "post": {
+        "operationId": "signin",
+        "tags": ["DQ Auth API"],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/AuthenticationRequest" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "JWT token generated",
+            "schema": { "$ref": "#/definitions/AuthResponse" }
+          }
+        }
+      }
+    },
+    "/v2/getrunidsbydatasetdesc": {
+      "get": {
+        "operationId": "getRunIds",
+        "tags": ["DQ Rule API"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "dataset",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Dataset name"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer token e.g. Bearer <jwt_token>"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Run IDs returned successfully",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing Bearer token"
+          }
+        },
+        "security": [{ "bearer_auth": [] }]
+      }
+    },
+    "/v3/rules/{dataset}/{ruleName}/{runId}/breaks": {
+      "get": {
+        "operationId": "getBreakRecords",
+        "tags": ["DQ Rule API"],
+        "produces": ["application/octet-stream"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer token e.g. Bearer <jwt_token>"
+          },
+          {
+            "name": "dataset",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ruleName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "runId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "CSV file of break records",
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing Bearer token"
+          }
+        },
+        "security": [{ "bearer_auth": [] }]
+      }
+    }
+  },
+  "definitions": {
+    "AuthenticationRequest": {
+      "type": "object",
+      "properties": {
+        "username": { "type": "string" },
+        "password": { "type": "string" },
+        "iss": { "type": "string" }
+      }
+    },
+    "AuthResponse": {
+      "type": "object",
+      "properties": {
+        "username": { "type": "string" },
+        "token": { "type": "string" }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "bearer_auth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization",
+      "description": "Enter: Bearer <jwt_token>"
+    }
+  }
+}
